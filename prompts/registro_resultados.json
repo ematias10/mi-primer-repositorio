@@ -1,0 +1,14 @@
+{
+  "clasificar_sentimiento": {
+    "exitos": 0,
+    "intentos": 3
+  },
+  "clasificar_categoria": {
+    "exitos": 3,
+    "intentos": 3
+  },
+  "clasificar_urgencia": {
+    "exitos": 0,
+    "intentos": 3
+  }
+}
