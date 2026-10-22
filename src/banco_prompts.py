@@ -59,31 +59,31 @@ BANCO_DE_PROMPTS = [
 ]
 
 if __name__ == '__main__':
-    registro = {}
- 
-for prompt in BANCO_DE_PROMPTS:
-	exitos = 0
-	intentos = 3
-	for intento in range(intentos):
-		url, body = armar_peticion(
-        	prompt["ejemplo_usuario"],
-        	prompt["system_instruction"],
-        	prompt.get("response_schema"),
-    	)
-		respuesta = enviar_peticion(url, body)
-		texto = extraer_texto(respuesta)
-		print(f"Respuesta recibida: {texto}")
-		try:
-			datos = parsear_respuesta_json(texto)
-			print(f"Datos parseados: {datos}")
-			if all(clave in datos for clave in prompt["claves_esperadas"]):
-				exitos += 1
-		except ValueError as error:
-			print(f"  intento {intento + 1} falló: {error}")
-		time.sleep(1)
-	print(f"{prompt['nombre']}: {exitos}/{intentos} respuestas válidas")
-	registro[prompt["nombre"]] = {"exitos": exitos, "intentos": intentos}
+	registro = {}
+	
+	for prompt in BANCO_DE_PROMPTS:
+		exitos = 0
+		intentos = 3
+		for intento in range(intentos):
+			url, body = armar_peticion(
+				prompt["ejemplo_usuario"],
+				prompt["system_instruction"],
+				prompt.get("response_schema"),
+			)
+			respuesta = enviar_peticion(url, body)
+			texto = extraer_texto(respuesta)
+			print(f"Respuesta recibida: {texto}")
+			try:
+				datos = parsear_respuesta_json(texto)
+				print(f"Datos parseados: {datos}")
+				if all(clave in datos for clave in prompt["claves_esperadas"]):
+					exitos += 1
+			except ValueError as error:
+				print(f"  intento {intento + 1} falló: {error}")
+			time.sleep(1)
+		print(f"{prompt['nombre']}: {exitos}/{intentos} respuestas válidas")
+		registro[prompt["nombre"]] = {"exitos": exitos, "intentos": intentos}
 
- 
-with open("prompts/registro_resultados.json", "w", encoding="utf-8") as archivo:
-	json.dump(registro, archivo, indent=2, ensure_ascii=False)
+	
+		with open("prompts/registro_resultados.json", "w", encoding="utf-8") as archivo:
+			json.dump(registro, archivo, indent=2, ensure_ascii=False)

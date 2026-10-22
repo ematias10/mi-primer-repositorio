@@ -14,6 +14,4 @@ def parsear_respuesta_json(texto):
 		raise ValueError(f"Error al parsear JSON: {e}")
 	finally:
 		print(f"completado parseo de JSON")
-	if "categoria" not in datos or "confianza" not in datos:
-		raise ValueError("La respuesta no tiene la estructura esperada.")
 	return datos

@@ -1,6 +1,6 @@
 {
   "clasificar_sentimiento": {
-    "exitos": 0,
+    "exitos": 3,
     "intentos": 3
   },
   "clasificar_categoria": {
@@ -8,7 +8,7 @@
     "intentos": 3
   },
   "clasificar_urgencia": {
-    "exitos": 0,
+    "exitos": 3,
     "intentos": 3
   }
 }
